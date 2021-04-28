@@ -1,34 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
 
-class Login extends React.Component{
-    constructor() {
-        super()
-        this.state = {
-            username: '',
-            password: '',
-            isLogined: false
-        }
-    }
+const Login = () => {
+    const [state, setState] = useState({
+        username: '',
+        password: '',
+        isLogined: false,
+        loginFailed: false
+    })
 
-    handleInputChange = (event) => {
-        this.setState({
+    const handleInputChange = (event) => { //research javascript destucturing
+        setState({
+            ...state,
             [event.target.name]: event.target.value
         })
     }
 
-    submitClick=() =>
-    {
-        if((this.state.username == "") &&   (this.state.password == ""))
-        {
-            this.setState({isLogined:true});
+    const submitClick = () => {
+        let isLogined = false;
+        let loginFailed = true;
+        if ((state.username == "username") && (state.password == "password")) {
+            isLogined = true;
+            loginFailed = false;
         }
+        setState({...state, isLogined: isLogined, loginFailed: loginFailed});
     }
-    render() {
-        return (
-            <div>
-                <input type="text" name="username" hint="username" onChange={this.handleInputChange} />
-                <input type="password" name="password" hint="password" onChange={this.handleInputChange} />
-                <button  name="submit" onClick={this.submitClick}> Submit</button></div>);
-    }
+    return (
+        <div>
+            <input type="text" data-testid="username" hint="username" onChange={handleInputChange}/>
+            <input type="password" data-testid="password" hint="password" onChange={handleInputChange}/>
+            <button data-testid="submit" onClick={submitClick}> Submit</button>
+            {state.loginFailed &&
+                <p data-testid="failedLoginMessage">login failed</p>
+            }
+        </div>);
 }
 export default Login

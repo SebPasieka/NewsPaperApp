@@ -1,9 +1,8 @@
 import React from "react";
 import Header from "./components/Header";
 import MainContent from "./components/MainContent";
-import Footer from "./components/Footer";
-import Articlefetch from "./components/ArticleFetch";
 import Login from "./components/Login"
+import Article from "./components/Article"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "./App.css"
 
@@ -17,6 +16,7 @@ function App() {
                 <Route path="/" exact component={MainContent} />
                 <Route path="/login" component={Login} />
                 <Route path="/main" component={MainContent} />
+                <Route path="/article" component={Article} />
             </Switch>
         </div>
         </Router>

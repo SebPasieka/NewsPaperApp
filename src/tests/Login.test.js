@@ -1,31 +1,19 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import Login from '../components/Login';
+import React from 'react'
+import { render, screen } from "@testing-library/react"
+import userEvent from '@testing-library/user-event'
+import '@testing-library/jest-dom/extend-expect';
+import Login from '../components/Login'
+
 
 describe('testing login',() =>{
-    let wrapper;
-    test('username check',()=> {
-        wrapper = shallow(<Login/>);
-        wrapper.find('input[type="text"]').simulate('change', {target: {name: 'username', value: ''}});
-        expect(wrapper.state('username')).toEqual('');
-    })
-    it('password check',()=>{
-        wrapper = shallow(<Login/>);
-        wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: ''}});
-        expect(wrapper.state('password')).toEqual('');
-    })
-    it('login check with right data',()=>{
-        wrapper = shallow(<Login/>);
-        wrapper.find('input[type="text"]').simulate('change', {target: {name: 'username', value: ''}});
-        wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: ''}});
-        wrapper.find('button').simulate('click');
-        expect(wrapper.state('isLogined')).toBe(true);
-    })
-    it('login check with wrong data',()=>{
-        wrapper = shallow(<Login/>);
-        wrapper.find('input[type="text"]').simulate('change', {target: {name: 'username', value: ''}});
-        wrapper.find('input[type="password"]').simulate('change', {target: {name: 'password', value: ''}});
-        wrapper.find('button').simulate('click');
-        expect(wrapper.state('isLogined')).toBe(false);
+    it('should inform user about failed login',()=>{
+        render(<Login />);
+
+        userEvent.type(screen.getByTestId('username'), 'invaledUser');
+        userEvent.type(screen.getByTestId('password'), 'invaledPassword');
+        userEvent.click(screen.getByTestId('submit'));
+
+        const failedMessage = screen.getByTestId('failedLoginMessage')
+        expect(failedMessage).toHaveTextContent('login failed');
     })
 })

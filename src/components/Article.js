@@ -1,6 +1,7 @@
 import React from "react";
+import SandboxApi from "../SandboxApi";
 
-class ArticleFetch extends React.Component {
+class Article extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,16 +13,7 @@ class ArticleFetch extends React.Component {
     }
 
     componentDidMount() {
-
-        const requestOptions = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic '+btoa('sebastian.pasieka:9WGDbRz2Hf'),
-            }
-        };
-        const url = 'https://sandbox-api.ipool.asideas.de/sandbox/api/search?types=article&publisher=welt%2C%20WELT&q=test'
-        fetch(url, requestOptions)
-            .then(response => response.json())
+        SandboxApi.fetchArticles()
             .then(
                 (result) => {
                     this.setState({
@@ -61,4 +53,4 @@ class ArticleFetch extends React.Component {
     }
 }
 
-export default ArticleFetch
+export default Article

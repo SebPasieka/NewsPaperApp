@@ -8,6 +8,7 @@ it('updates on change', () => {
     const setSearch = jest.fn((value) => {})
     const { queryByPlaceholderText } = render(<Searchbar setSearch={setSearch}/>)
     const searchInput = queryByPlaceholderText('search')
+
     fireEvent.change(searchInput, { target: { value: 'test' } })
 
     expect(searchInput.value).toBe('test')
