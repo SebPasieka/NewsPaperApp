@@ -1,12 +1,12 @@
 import React from "react"
 import Searchbar from "./Searchbar"
-import Article from "./Article"
+import ArticleList from "./ArticleList"
 
 function MainContent() {
     return(
         <main>
             <Searchbar />
-            <Article />
+            <ArticleList />
         </main>
     )
 }
