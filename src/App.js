@@ -15,7 +15,6 @@ function App() {
             <Switch>
                 <Route path="/" exact component={MainContent} />
                 <Route path="/login" component={Login} />
-                <Route path="/main" component={MainContent} />
                 <Route path="/articles" component={ArticleList} />
             </Switch>
         </div>

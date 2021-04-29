@@ -8,7 +8,7 @@ const Login = () => {
         loginFailed: false
     })
 
-    const handleInputChange = (event) => { //research javascript destucturing
+    const handleInputChange = (event) => { 
         setState({
             ...state,
             [event.target.name]: event.target.value

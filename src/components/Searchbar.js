@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 
-function Searchbar() {
+function Searchbar(props) {
+    const {keywordChangesCallback} = props
     const [keyword, setKeyword] = useState("")
     const BarStyling = {border: "none", padding: "8px"};
+    const changeHandler = (e) => {
+        const newValue = e.target.value
+        setKeyword(newValue)
+        keywordChangesCallback(newValue)
+    }
     return (
         <input
             style={BarStyling}
             value={keyword}
             placeholder={"search"}
-            onChange={e => {setKeyword(e.target.value)}}
+            onChange={changeHandler}
         />
     );
 }

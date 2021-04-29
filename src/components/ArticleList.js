@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import SandboxApi from "../SandboxApi";
-
+// articlelist receives items via property 
 const ArticleList = () => {
     const [state, setState] = useState({
         error: false,
         items: [],
         isLoaded: false
     });
+    // should be moved to mainContent
     useEffect(() => {
-        // todo research promises
         SandboxApi.fetchArticles()
             .then((result) => {
                 setState({
