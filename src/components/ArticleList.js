@@ -1,56 +1,59 @@
-import React, {useState, useEffect} from "react";
-import SandboxApi from "../SandboxApi";
-// articlelist receives items via property 
-const ArticleList = () => {
-    const [state, setState] = useState({
-        error: false,
-        items: [],
-        isLoaded: false
-    });
-    // should be moved to mainContent
-    useEffect(() => {
-        SandboxApi.fetchArticles()
-            .then((result) => {
-                setState({
-                    ...state, items: result.documents, isLoaded: true, error: false
-                })
-            })
-            .catch(() => {
-                setState({
-                    ...state, items: [], isLoaded: true, error: true
-                })
-            })
-    }, [])
-    /*componentDidMount() {
-        SandboxApi.fetchArticles()
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result.documents
-                    });
+import React from "react";
 
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    })
-                }
-            )
-    }*/
+const ArticleList = ({articles = []}) => {
 
     return (
         <div>
+            {articles.length > 0 &&
             <ul>
-                {state.items.map(item => (
-                    <li key={item.id}>
+                {articles.map(item => (
+                    <li key={item.id} data-testid='article-entry'>
                         {item.id}
                     </li>
                 ))}
             </ul>
+            }
+
+            {!articles.length &&
+            <p data-testid='nothing-found-message'>nothing found</p>
+            }
+
         </div>
     );
 }
 
+
+// should be moved to mainContent
+/*useEffect(() => {
+    SandboxApi.fetchArticles()
+        .then((result) => {
+            setState({
+                ...state, items: result.documents, isLoaded: true, error: false
+            })
+        })
+        .catch(() => {
+            setState({
+                ...state, items: [], isLoaded: true, error: true
+            })
+        })
+}, [])
+*/
+/*componentDidMount() {
+    SandboxApi.fetchArticles()
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    items: result.documents
+                });
+
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                })
+            }
+        )
+}*/
 export default ArticleList
