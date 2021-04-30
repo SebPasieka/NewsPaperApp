@@ -5,18 +5,29 @@ function Searchbar(props) {
 
     const [keyword, setKeyword] = useState("")
     const BarStyling = {border: "none", padding: "8px"};
+
+    // updates internal state
     const changeHandler = (e) => {
         const newValue = e.target.value
         setKeyword(newValue)
-        setSearch(newValue)
     }
+
+    // calls callback
+    const submitHandler = () => {
+        setSearch(keyword);
+    }
+
     return (
+        <form data-testid='search-form'
+              onSubmit={submitHandler}>
         <input
+            data-testid='search-input'
             style={BarStyling}
             value={keyword}
             placeholder={"search"}
             onChange={changeHandler}
         />
+        </form>
     );
 }
 export default Searchbar

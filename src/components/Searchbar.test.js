@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import Searchbar from '../components/Searchbar';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -7,14 +7,30 @@ import '@testing-library/jest-dom/extend-expect';
 describe('<Searchbar/>',  () => {
 
     it('allows user to input keyword', () => {
-        const setSearch = jest.fn((value) => {})
-        const { queryByPlaceholderText } = render(<Searchbar setSearch={setSearch}/>)
-        const searchInput = queryByPlaceholderText('search')
 
+        render(<Searchbar setSearch={jest.fn()}/>)
+
+        const searchInput = screen.getByTestId('search-input')
         fireEvent.change(searchInput, { target: { value: 'test' } })
 
         expect(searchInput.value).toBe('test')
     });
 
-    it('triggers a search with the entered keyword when form is submitted', ()=>{})
+    it('triggers a search with the entered keyword when form is submitted', ()=>{
+
+        // render component
+        const searchHandler = jest.fn();
+        render(<Searchbar setSearch={searchHandler}/>)
+
+        // change values
+        const searchInput = screen.getByTestId('search-input')
+        fireEvent.change(searchInput, { target: { value: 'test' } })
+
+        // submit form
+        const searchForm = screen.getByTestId('search-form');
+        fireEvent.submit(searchForm)
+
+        // expect handler to be called
+        expect(searchHandler).toHaveBeenCalledWith('test')
+    })
 });
