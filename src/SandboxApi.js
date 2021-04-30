@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 
 class SandboxApi {
     fetchArticles(keyword = "") {

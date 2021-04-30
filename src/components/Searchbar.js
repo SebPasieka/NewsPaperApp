@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 function Searchbar(props) {
     const {setSearch} = props;
@@ -18,16 +18,19 @@ function Searchbar(props) {
     }
 
     return (
-        <form data-testid='search-form'
-              onSubmit={submitHandler}>
-        <input
-            data-testid='search-input'
-            style={BarStyling}
-            value={keyword}
-            placeholder={"search"}
-            onChange={changeHandler}
-        />
-        </form>
+        <div data-testid='searchbar'>
+            <form data-testid='search-form'
+                  onSubmit={submitHandler}>
+                <input
+                    data-testid='search-input'
+                    style={BarStyling}
+                    value={keyword}
+                    placeholder={"search"}
+                    onChange={changeHandler}
+                />
+            </form>
+        </div>
     );
 }
+
 export default Searchbar

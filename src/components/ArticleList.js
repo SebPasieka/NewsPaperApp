@@ -3,7 +3,7 @@ import React from "react";
 const ArticleList = ({articles = []}) => {
 
     return (
-        <div>
+        <div data-testid='articlelist'>
             {articles.length > 0 &&
             <ul>
                 {articles.map(item => (
@@ -24,20 +24,7 @@ const ArticleList = ({articles = []}) => {
 
 
 // should be moved to mainContent
-/*useEffect(() => {
-    SandboxApi.fetchArticles()
-        .then((result) => {
-            setState({
-                ...state, items: result.documents, isLoaded: true, error: false
-            })
-        })
-        .catch(() => {
-            setState({
-                ...state, items: [], isLoaded: true, error: true
-            })
-        })
-}, [])
-*/
+
 /*componentDidMount() {
     SandboxApi.fetchArticles()
         .then(
