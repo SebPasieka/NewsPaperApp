@@ -1,18 +1,30 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import Searchbar from "./Searchbar"
 import ArticleList from "./ArticleList"
-// maincontent is responsible for executing search and passing data to aticlelist
-function MainContent() {
+import SandboxApi from '../SandboxApi';
+
+
+const MainContent = () => {
+
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        SandboxApi.fetchArticles()
+            .then((result) => setArticles(result.documents))
+            .catch(() => {
+                // todo handle error
+            })
+    }, [])
 
     // use maincontent has on state
-    const mainContentFunction = (keyword) => {
+    const setSearch = (keyword) => {
         console.log(keyword)
     }
 
     return(
         <main>
-            <Searchbar keywordChangesCallback = {mainContentFunction}/>
-            <ArticleList />
+            <Searchbar setSearch={setSearch}/>
+            <ArticleList articles={articles}/>
         </main>
     )
 }
