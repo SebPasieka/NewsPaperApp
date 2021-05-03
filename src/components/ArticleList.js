@@ -23,8 +23,6 @@ const ArticleList = ({articles = []}) => {
 }
 
 
-// should be moved to mainContent
-
 /*componentDidMount() {
     SandboxApi.fetchArticles()
         .then(

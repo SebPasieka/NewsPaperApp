@@ -13,7 +13,8 @@ function Searchbar(props) {
     }
 
     // calls callback
-    const submitHandler = () => {
+    const submitHandler = (e) => {
+        e.preventDefault()
         setSearch(keyword);
     }
 

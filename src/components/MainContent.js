@@ -16,10 +16,13 @@ const MainContent = () => {
             })
     }, [])
 
-    // use maincontent has on state
     const setSearch = (keyword) => {
-        console.log(keyword)
-    }
+        SandboxApi.fetchArticles(keyword)
+            .then((result) => setArticles(result.documents))
+            .catch(() => {
+                // todo handle error
+            })
+    };
 
     return(
         <main>
