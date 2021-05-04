@@ -13,3 +13,22 @@ body {
     justify-content: center;
     align-items: center;
 }
+.articleBox {
+    float: left;
+    width: 30%;
+    margin-right: 2%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-style: groove;
+    border-color: lightgrey;
+
+}
+.articleBox a {
+    text-decoration: none;
+    color: black;
+
+}
+.articleBox p {
+    color: dodgerblue;
+
+}

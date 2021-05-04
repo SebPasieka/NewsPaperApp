@@ -1,17 +1,20 @@
 import React from "react";
+import moment from 'moment'
+
 
 const ArticleList = ({articles = []}) => {
 
     return (
         <div data-testid='articlelist'>
             {articles.length > 0 &&
-            <ul>
+                <ul>
                 {articles.map(item => (
-                    <li key={item.id} data-testid='article-entry'>
-                        {item.id}
-                    </li>
+                    <div key={item.id} className="articleBox" data-testid='article-entry'>
+                        <a href={item.url}> [{item.publisher}]{item.title} </a>
+                        <p>{moment(item.dateCreated).format("dddd, MMM DD - HH:mm a")} </p>
+                    </div>
                 ))}
-            </ul>
+                </ul>
             }
 
             {!articles.length &&
@@ -22,23 +25,4 @@ const ArticleList = ({articles = []}) => {
     );
 }
 
-
-/*componentDidMount() {
-    SandboxApi.fetchArticles()
-        .then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                    items: result.documents
-                });
-
-            },
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                })
-            }
-        )
-}*/
 export default ArticleList
