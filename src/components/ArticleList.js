@@ -1,9 +1,9 @@
-import React from "react";
-import moment from 'moment'
+import React from "react"
+import moment from "moment"
 
 
 const ArticleList = ({articles = []}) => {
-
+// date component exportieren
     return (
         <div data-testid='articlelist'>
             {articles.length > 0 &&

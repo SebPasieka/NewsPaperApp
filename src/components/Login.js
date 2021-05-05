@@ -1,6 +1,9 @@
-import React, {useState} from "react";
+import React, {useState} from "react"
+import App from "../App"
+import {Redirect} from "react-router-dom"
 
-const Login = () => {
+const Login = (props) => {
+    const {setAuth} = props
     const [state, setState] = useState({
         username: '',
         password: '',
@@ -8,29 +11,37 @@ const Login = () => {
         loginFailed: false
     })
 
-    const handleInputChange = (event) => { 
+    const handleInputChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
         setState({
             ...state,
-            [event.target.name]: event.target.value
+            [name]: value
         })
     }
 
-    const submitClick = () => {
+    const submitClick = (e) => {
+        e.preventDefault()
         let isLogined = false;
         let loginFailed = true;
-        if ((state.username == "username") && (state.password == "password")) {
+        if ((state.username === "username") && (state.password === "password")) {
             isLogined = true;
             loginFailed = false;
         }
         setState({...state, isLogined: isLogined, loginFailed: loginFailed});
+        setAuth(isLogined);
     }
+
     return (
         <div>
-            <input type="text" data-testid="username" hint="username" onChange={handleInputChange}/>
-            <input type="password" data-testid="password" hint="password" onChange={handleInputChange}/>
+            <input name="username" type="text" data-testid="username" onChange={handleInputChange}/>
+            <input name="password" type="password" data-testid="password" onChange={handleInputChange}/>
             <button data-testid="submit" onClick={submitClick}> Submit</button>
             {state.loginFailed &&
-                <p data-testid="failedLoginMessage">login failed</p>
+            <p data-testid="failedLoginMessage">login failed</p>
+            }
+            {state.isLogined &&
+            <Redirect to={{pathname: "/"}} />
             }
         </div>);
 }

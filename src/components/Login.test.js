@@ -7,13 +7,13 @@ import Login from '../components/Login'
 
 describe('testing login',() =>{
     it('should inform user about failed login',()=>{
-        render(<Login />);
+        render(<Login setAuth={jest.fn()}/>);
 
         userEvent.type(screen.getByTestId('username'), 'invaledUser');
         userEvent.type(screen.getByTestId('password'), 'invaledPassword');
         userEvent.click(screen.getByTestId('submit'));
 
         const failedMessage = screen.getByTestId('failedLoginMessage')
-        expect(failedMessage).toHaveTextContent('login failed');
+        expect(failedMessage).toHaveTextContent('login failed'); // to-do happycase
     })
 })
