@@ -1,5 +1,5 @@
 import React from "react"
-import moment from "moment"
+import Date from "./Date"
 
 
 const ArticleList = ({articles = []}) => {
@@ -11,7 +11,7 @@ const ArticleList = ({articles = []}) => {
                 {articles.map(item => (
                     <div key={item.id} className="articleBox" data-testid='article-entry'>
                         <a href={item.url}> [{item.publisher}]{item.title} </a>
-                        <p>{moment(item.dateCreated).format("dddd, MMM DD - HH:mm a")} </p>
+                        <p>{ Date.ConvertDate(item.dateCreated) }</p>
                     </div>
                 ))}
                 </ul>

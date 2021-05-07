@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import App from "../App"
-import {Redirect} from "react-router-dom"
+import {Redirect, Router} from "react-router-dom"
 
 const Login = (props) => {
     const {setAuth} = props
