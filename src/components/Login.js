@@ -1,9 +1,9 @@
-import React, {useState} from "react"
-import App from "../App"
-import {Redirect, Router} from "react-router-dom"
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 
 const Login = (props) => {
     const {setAuth} = props
+    const history = useHistory()
     const [state, setState] = useState({
         username: '',
         password: '',
@@ -30,6 +30,10 @@ const Login = (props) => {
         }
         setState({...state, isLogined: isLogined, loginFailed: loginFailed});
         setAuth(isLogined);
+
+        if (isLogined) {
+            history.push("/")
+        }
     }
 
     return (
@@ -39,9 +43,6 @@ const Login = (props) => {
             <button data-testid="submit" onClick={submitClick}> Submit</button>
             {state.loginFailed &&
             <p data-testid="failedLoginMessage">login failed</p>
-            }
-            {state.isLogined &&
-            <Redirect to={{pathname: "/"}} />
             }
         </div>);
 }

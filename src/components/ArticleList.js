@@ -3,7 +3,7 @@ import Date from "./Date"
 
 
 const ArticleList = ({articles = []}) => {
-// date component exportieren
+
     return (
         <div data-testid='articlelist'>
             {articles.length > 0 &&
