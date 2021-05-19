@@ -10,17 +10,29 @@ const MainContent = () => {
 
     useEffect(() => {
         SandboxApi.fetchArticles()
-            .then((result) => setArticles(result.documents))
-            .catch(() => {
-                // todo handle error
+            .then((result) => {
+                if (result.error) {
+                    throw Error("There has been an error.\n" +
+                        "Cannot communicate with the API.")
+                }
+                setArticles(result.documents);
+            })
+            .catch (err => {
+                alert(err.message)
             })
     }, [])
 
     const setSearch = (keyword) => {
         SandboxApi.fetchArticles(keyword)
-            .then((result) => setArticles(result.documents))
-            .catch(() => {
-                // todo handle error
+            .then((result) => {
+                if (result.error) {
+                    throw Error("There has been an error.\n" +
+                        "Cannot communicate with the API.")
+                }
+                setArticles(result.documents);
+            })
+            .catch (err => {
+                alert(err.message)
             })
     };
 
