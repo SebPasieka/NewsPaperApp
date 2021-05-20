@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
+import AuthService from "../Services/authService"
 
 const Login = (props) => {
     const {setAuth} = props
@@ -24,16 +25,21 @@ const Login = (props) => {
         e.preventDefault()
         let isLogined = false;
         let loginFailed = true;
-        if ((state.username === "username") && (state.password === "password")) {
-            isLogined = true;
-            loginFailed = false;
-        }
-        setState({...state, isLogined: isLogined, loginFailed: loginFailed});
-        setAuth(isLogined);
+        AuthService.verify(state.username, state.password)
+            .then(() => {
+                isLogined = true;
+                loginFailed = false;
+                setState({...state, isLogined: isLogined, loginFailed: loginFailed});
+                setAuth(isLogined);
+                history.push("/");
+            })
+            .catch(() => {
+                isLogined = false;
+                loginFailed = true;
+                setState({...state, isLogined: isLogined, loginFailed: loginFailed});
+                setAuth(isLogined);
+            })
 
-        if (isLogined) {
-            history.push("/")
-        }
     }
 
     return (
