@@ -25,9 +25,21 @@ describe('<ArticleList/>', () => {
 
         expect(nothingFoundMsg).toHaveTextContent('nothing found');
     })
+
+    it('should render a link of an article', () => {
+
+        const items = givenSomeLink();
+        render(<ArticleList articles={items}/>)
+
+        const articleLink = screen.getByTestId('article-link')
+
+        expect(articleLink).toHaveAttribute('href', 'www.welt.de')
+    })
 });
 
-
+const givenSomeLink = () => {
+    return [{url: 'www.welt.de'}];
+}
 const givenSomeArticles = () => {
     return [{id: 'someId1'}, {id: 'someId2'}, {id: 'someId3'}];
 }

@@ -10,8 +10,8 @@ const ArticleList = ({articles = []}) => {
                 <ul>
                 {articles.map(item => (
                     <div key={item.id} className="articleBox" data-testid='article-entry'>
-                        <a href={item.url}> [{item.publisher}]{item.title} </a>
-                        <p>{ Date.ConvertDate(item.dateCreated) }</p>
+                        <a data-testid='article-link' href={item.url}> [{item.publisher}]{item.title} </a>
+                        <p data-testid='article-date'>{ Date.ConvertDate(item.dateCreated) }</p>
                     </div>
                 ))}
                 </ul>
