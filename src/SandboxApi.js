@@ -14,5 +14,16 @@ class SandboxApi {
          .then(response => response.json())
 
     }
+
+    logInTest(credentials) {
+        const requestOptions = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic '+credentials,
+            }
+        };
+        const url = 'https://sandbox-api.ipool.asideas.de/sandbox/api/search'
+        return fetch(url, requestOptions)
+    }
 }
 export default new SandboxApi();
