@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html --public-url 'https://sebpasieka.github.io/NewsPaperApp/'"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
       ".+\\.(css|scss)$": "jest-css-modules-transform"
     }
   },
-  "homepage": "https://github.com/SebPasieka/NewsPaperApp#readme",
+  "homepage": "https://sebpasieka.github.io/NewsPaperApp/",
   "dependencies": {
     "bulma": "0.9.2",
     "jest-css-modules-transform": "4.2.1",
