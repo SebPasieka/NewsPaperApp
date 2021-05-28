@@ -23,7 +23,7 @@ function App() {
                 <Route path="/login">
                     <Login setAuth={setAuth} />
                 </Route>
-                <ProtectedRoute exact path="/" component={MainContent} isAuth={isAuth}/>
+                <ProtectedRoute component={MainContent} isAuth={isAuth}/>
             </Switch>
             <Footer />
         </div>
