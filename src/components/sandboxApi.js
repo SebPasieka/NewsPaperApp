@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import authService from "./Services/authService"
+import authService from "../services/authService"
 
 class SandboxApi {
     fetchArticles(keyword = "") {

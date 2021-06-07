@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
-import Searchbar from "./Searchbar"
-import ArticleList from "./ArticleList"
-import SandboxApi from '../SandboxApi';
+import Searchbar from "./searchbar"
+import ArticleList from "./articleList"
+import SandboxApi from './sandboxApi';
 
 
 const MainContent = () => {

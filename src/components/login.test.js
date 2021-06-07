@@ -2,9 +2,9 @@ import React from 'react'
 import { render, screen, act } from "@testing-library/react"
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom/extend-expect';
-import Login from '../components/Login'
+import Login from '../components/login'
 import { Router , Route } from "react-router-dom"
-import AuthService from "../Services/authService"
+import AuthService from "../services/authService"
 
 describe('testing login',() => {
     it('should login user when correct credentials are given', async ()=>{

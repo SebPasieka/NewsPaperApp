@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import AuthService from "../Services/authService"
+import AuthService from "../services/authService"
 
 const Login = (props) => {
     const {setAuth} = props

@@ -1,8 +1,8 @@
 import React from 'react';
 import {act, render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import MainContent from './MainContent';
-import SandboxApi from '../SandboxApi';
+import MainContent from './mainContent';
+import SandboxApi from './sandboxApi';
 
 describe('<MainContent/>', () => {
 

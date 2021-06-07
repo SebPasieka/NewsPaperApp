@@ -1,6 +1,6 @@
 import authService, { localStorageKey } from "./authService"
 import 'jest-localstorage-mock'
-import SandboxApi from '../SandboxApi'
+import SandboxApi from '../components/sandboxApi'
 
 describe("testing authService", () => {
     it('should return a resolve promise and save credentials in localStorage given a successful api call', async () => {

@@ -1,4 +1,4 @@
-import SandboxApi from '../SandboxApi'
+import SandboxApi from '../components/sandboxApi'
 
 export const localStorageKey = "credentials"
 

@@ -1,5 +1,5 @@
 import React from "react"
-import Date from "./Date"
+import Date from "./date"
 
 
 const ArticleList = ({articles = []}) => {

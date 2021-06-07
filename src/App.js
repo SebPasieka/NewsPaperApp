@@ -2,12 +2,11 @@ import React, { useState } from "react"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import MainContent from "./components/MainContent"
-import Login from "./components/Login"
+import Login from "./components/login"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import ProtectedRoute from "./ProtectedRoute"
+import ProtectedRoute from "./components/protectedRoute"
 //import 'bulma/css/bulma.min.css';
 import "./App.css"
-
 
 function App() {
     const [isAuth, setIsAuth] = useState(false)

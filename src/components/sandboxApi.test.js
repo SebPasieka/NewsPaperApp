@@ -1,4 +1,4 @@
-import SandboxApi from "../SandboxApi";
+import SandboxApi from "./sandboxApi";
 import fetchMock from "jest-fetch-mock";
 
 fetchMock.enableMocks();
