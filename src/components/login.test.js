@@ -11,8 +11,10 @@ describe('testing login',() => {
         jest.spyOn(AuthService, "verify").mockImplementation(() => Promise.resolve())
 
 
-       render(
-            <Router history={{location: {pathname: "/login"}, listen: jest.fn(), push: jest.fn(), createHref: jest.fn()}}>
+        let push = jest.fn();
+        let history = {location: {pathname: "/login"}, listen: jest.fn(), push: push, createHref: jest.fn()};
+        render(
+            <Router history={history}>
                 <Login setAuth={jest.fn()}/>
             </Router>
         )
@@ -22,6 +24,7 @@ describe('testing login',() => {
         })
 
         expect(AuthService.verify).toHaveBeenCalled();
+        expect(push).toHaveBeenCalledWith("/");
     })
     it('should inform user about failed login', async ()=>{
         jest.spyOn(AuthService, "verify").mockImplementation(() => Promise.reject())
