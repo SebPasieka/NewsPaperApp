@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+<body class="container content">
+    <button type="button" id="setupButton" onclick="showSetup()">tell me a joke</button>
+    <h3 class="setupText">  </h3>
+    <button type="button" id="punchlineButton" onclick="showPunchline()">I dont know, tell me</button>
+    <h3 class="punchlineText">  </h3>
+    <button type="button" id="newJokeButton" onclick="newJoke()">meh.. next one!</button>
+    <script>
+        $("#punchlineButton").hide();
+        $("#newJokeButton").hide();
+    function getData() {
+        $.get("https://official-joke-api.appspot.com/random_joke", function(data, status){
+            console.log(data, status);      
+            localStorage.setItem("setup", data.setup);
+            localStorage.setItem("punchline", data.punchline);
+    });
+    }
+    
+    getData();
+    
+    function showSetup() {
+        const setup = localStorage.getItem("setup");
+        $(".setupText").text(function(){
+                return setup
+            })
+            localStorage.removeItem("setup");
+            if (setup != null) {
+                $("#punchlineButton").show();
+            }
+            
+    }
+    
+    function showPunchline() {
+        const punchline = localStorage.getItem("punchline");
+        $(".punchlineText").text(function(){
+                return punchline;
+            })
+            localStorage.removeItem("punchline");
+            if (punchline != null) {
+                $("#newJokeButton").show();
+            }
+    }
+
+    function newJoke() {
+        $(".setupText").text("");
+        $(".punchlineText").text("");
+        $("#punchlineButton").hide();
+        $("#newJokeButton").hide();
+        getData();
+    }
+    </script>
+</body>
+</html>
