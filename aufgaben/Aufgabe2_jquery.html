@@ -1,56 +1,130 @@
 <!DOCTYPE html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        class Model {
+            constructor() {
+                this.joke = "";
+                this.punchline = "";
+            }
+
+            setJoke(joke) {
+                this.joke = joke
+            }
+
+            setPunchline(punchline) {
+                this.punchline = punchline
+            }
+
+            async fetchJoke() {
+                try {
+                    const result = await $.ajax({
+                        url: "https://official-joke-api.appspot.com/random_joke",
+                        type: "GET"
+                    })
+                    this.setJoke(result.setup)
+                    this.setPunchline(result.punchline)
+                } catch (e) {
+
+                }
+            }
+
+            getJoke() {
+                return this.joke
+            }
+
+            getPunchline() {
+                return this.punchline
+            }
+        }
+
+        class View {
+            constructor(model) {
+                this.model = model
+                this.showInitialScreen(true)
+                this.showJokeScreen(false)
+                this.showPunchlineScreen(false)
+            }
+
+            showInitialScreen(show) {
+                show ? $("#screenInitial").show() : $("#screenInitial").hide()
+            }
+
+            showJokeScreen(show) {
+                show ? $("#screenJoke").show() : $("#screenJoke").hide()
+
+                $(".jokeText").text(this.model.getJoke())
+            }
+
+            showPunchlineScreen(show) {
+                show ? $("#screenPunchline").show() : $("#screenPunchline").hide()
+
+                $(".punchlineText").text(this.model.getPunchline())
+            }
+
+            registerShowJoke(callback) {
+                console.log(callback)
+                $("#jokeButton").click(callback)
+            }
+
+            registerShowPunchline(callback) {
+                $("#punchlineButton").click(callback)
+            }
+
+            registerShowNewJoke(callback) {
+                $("#newJokeButton").click(callback)
+            }
+        }
+
+        class Controller {
+            constructor(model, view) {
+                this.model = model
+                this.view = view
+            }
+
+            registerHandlers() {
+                this.view.registerShowJoke(this.showJoke.bind(this))
+                this.view.registerShowPunchline(this.showPunchline.bind(this))
+                this.view.registerShowNewJoke(this.showJoke.bind(this))
+
+            }
+
+            async showJoke() {
+                await this.model.fetchJoke()
+                this.view.showJokeScreen(true)
+                this.view.showPunchlineScreen(false)
+            }
+
+            async showPunchline() {
+                this.view.showPunchlineScreen(true)
+            }
+        }
+
+        function init() {
+            const model = new Model()
+            const view = new View(model)
+            const controller = new Controller(model, view)
+            controller.registerHandlers()
+            console.log("init", model)
+        }
+
+        window.onload = init
+    </script>
 </head>
 <body class="container content">
-    <button type="button" id="setupButton" onclick="showSetup()">tell me a joke</button>
-    <h3 class="setupText">  </h3>
-    <button type="button" id="punchlineButton" onclick="showPunchline()">I dont know, tell me</button>
-    <h3 class="punchlineText">  </h3>
-    <button type="button" id="newJokeButton" onclick="newJoke()">meh.. next one!</button>
-    <script>
-        $("#punchlineButton").hide();
-        $("#newJokeButton").hide();
-    function getData() {
-        $.get("https://official-joke-api.appspot.com/random_joke", function(data, status){
-            console.log(data, status);      
-            localStorage.setItem("setup", data.setup);
-            localStorage.setItem("punchline", data.punchline);
-    });
-    }
-    
-    getData();
-    
-    function showSetup() {
-        const setup = localStorage.getItem("setup");
-        $(".setupText").text(function(){
-                return setup
-            })
-            localStorage.removeItem("setup");
-            if (setup != null) {
-                $("#punchlineButton").show();
-            }
-            
-    }
-    
-    function showPunchline() {
-        const punchline = localStorage.getItem("punchline");
-        $(".punchlineText").text(function(){
-                return punchline;
-            })
-            localStorage.removeItem("punchline");
-            if (punchline != null) {
-                $("#newJokeButton").show();
-            }
-    }
 
-    function newJoke() {
-        $(".setupText").text("");
-        $(".punchlineText").text("");
-        $("#punchlineButton").hide();
-        $("#newJokeButton").hide();
-        getData();
-    }
-    </script>
+<div id="screenInitial">
+    <button type="button" id="jokeButton">tell me a joke</button>
+</div>
+
+<div id="screenJoke">
+    <h3 class="jokeText"></h3>
+    <button type="button" id="punchlineButton">I dont know, tell me</button>
+</div>
+
+<div id="screenPunchline">
+    <h3 class="punchlineText"></h3>
+    <button type="button" id="newJokeButton">meh.. next one!</button>
+</div>
 </body>
 </html>
