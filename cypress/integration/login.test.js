@@ -1,8 +1,11 @@
 describe('login', () => {
     it('should redirect to homepage given valid credentials', () => {
+        const username = Cypress.env('username')
+        const password = Cypress.env('password')
+
         cy.visit('/')
-        cy.get('[data-testid="username"]').type("sebastian.pasieka")
-        cy.get('[data-testid="password"]').type("")
+        cy.get('[data-testid="username"]').type(username)
+        cy.get('[data-testid="password"]').type(password)
         cy.get('[data-testid="submit"]').click()
 
         cy.url().should('include', '/')

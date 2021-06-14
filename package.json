@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html --public-url '.'",
-    "cypress": "cypress open --config baseUrl=http://localhost:1234"
+    "cypress": "cypress open --env username=$USERNAME,password=$PASSWORD"
   },
   "repository": {
     "type": "git",
