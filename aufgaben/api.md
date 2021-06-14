@@ -41,3 +41,10 @@ Aufgabe 3
 ---------
 
 Erkläre den Unterschied zwischen Synchron und Asynchron. Was gefällt dir mehr?
+
+Bei Synchron wird die zweite Zeile erst dann ausgeführt, wenn die erste Zeile verarbeitet/umgesetzt wurde.
+Es entstehen Blockaden.
+Wohingegen bei Asynchron nicht gewartet wird, bis die vorherige Operation abgeschlossen ist.
+Das Ergebnis jeder Operation wird verarbeitet, sobald es verfügbar ist (keine Blockaden).
+
+Synchroner Code ist lesbarer und weniger fehleranfällig, jedoch ist der asynchrone Code durch die fehlenden Blockaden performanter.
