@@ -13,6 +13,12 @@ describe('login', () => {
     })
 
     it('should display error message given invalid credentials', () => {
+        cy.visit('/')
+        cy.get('[data-testid="username"]').type('invalid_username')
+        cy.get('[data-testid="password"]').type('invalid_password')
+        cy.get('[data-testid="submit"]').click()
 
+        cy.url().should('include', '/login')
+        cy.get('[data-testid="failedLoginMessage"]').should('be.visible')
     })
 })
