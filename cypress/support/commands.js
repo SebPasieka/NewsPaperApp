@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('successfulLogin', () => {
+    const username = Cypress.env('username')
+    const password = Cypress.env('password')
+
+    cy.get('[data-testid="username"]').type(username)
+    cy.get('[data-testid="password"]').type(password)
+    cy.get('[data-testid="submit"]').click()
+})
+
+Cypress.Commands.add('searchArticle', (keyword) => {
+    cy.get('[data-testid="searchbar"]', { timeout: 10000 }).should('be.visible')
+    cy.get('[data-testid="search-input"]').type(keyword+'{enter}')
+    cy.wait(100)
+})

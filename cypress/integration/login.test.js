@@ -1,15 +1,10 @@
 describe('login', () => {
     it('should redirect to homepage given valid credentials', () => {
-        const username = Cypress.env('username')
-        const password = Cypress.env('password')
-
         cy.visit('/')
-        cy.get('[data-testid="username"]').type(username)
-        cy.get('[data-testid="password"]').type(password)
-        cy.get('[data-testid="submit"]').click()
+        cy.successfulLogin()
 
         cy.url().should('include', '/')
-        cy.get('[data-testid="searchbar"]').should('be.visible')
+        cy.get('[data-testid="searchbar"]', { timeout: 10000 }).should('be.visible')
     })
 
     it('should display error message given invalid credentials', () => {
@@ -19,6 +14,6 @@ describe('login', () => {
         cy.get('[data-testid="submit"]').click()
 
         cy.url().should('include', '/login')
-        cy.get('[data-testid="failedLoginMessage"]').should('be.visible')
+        cy.get('[data-testid="failedLoginMessage"]', { timeout: 10000 }).should('be.visible')
     })
 })
