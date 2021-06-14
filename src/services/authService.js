@@ -14,9 +14,6 @@ class AuthService {
                         return Promise.reject()
                     }
                 })
-               .catch(() => {
-
-               })
 
     }
     getCredentials() {

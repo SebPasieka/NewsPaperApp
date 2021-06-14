@@ -13,11 +13,9 @@ describe("testing authService", () => {
     });
     it('should return a reject promise and remove credentials in localStorage given a unsuccessful api call', async () => {
         jest.spyOn(SandboxApi, 'logInTest').mockResolvedValue({ok: false})
-
         localStorage.setItem(localStorageKey, "wrongTestValue")
-        await authService.verify()
 
+        await expect(authService.verify()).rejects.toBeUndefined()
         expect(localStorage.getItem(localStorageKey)).toBeNull()
-
     });
 })
