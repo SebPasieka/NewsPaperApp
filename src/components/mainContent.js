@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react"
 import Searchbar from "./searchbar"
 import ArticleList from "./articleList"
-import SandboxApi from './sandboxApi';
+import SandboxApi from './sandboxApi'
+import Logout from "./logout"
 
 
 const MainContent = () => {
@@ -40,6 +41,7 @@ const MainContent = () => {
         <main>
             <Searchbar setSearch={setSearch}/>
             <ArticleList articles={articles}/>
+            <Logout />
         </main>
     )
 }
