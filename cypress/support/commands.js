@@ -31,6 +31,7 @@ Cypress.Commands.add('successfulLogin', () => {
     cy.get('[data-testid="username"]').type(username)
     cy.get('[data-testid="password"]').type(password)
     cy.get('[data-testid="submit"]').click()
+    cy.wait(100)
 })
 
 Cypress.Commands.add('searchArticle', (keyword) => {

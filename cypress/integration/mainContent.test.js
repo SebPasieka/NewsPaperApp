@@ -5,7 +5,7 @@ describe('MainContent', ()=> {
 
         cy.searchArticle("welt")
 
-        cy.get('[data-testid="article-entry"]', {timeout: 1000}).contains('welt')
+        cy.get('[data-testid="article-entry"]', {timeout: 2000}).contains('welt')
     })
 
     it('should display a "nothing found" message after searching with an abstract string', () => {
@@ -14,7 +14,7 @@ describe('MainContent', ()=> {
 
         cy.searchArticle("UnterDieserSuchbegriffGibtEsMitSicherheitKeinArtikel")
 
-        cy.get('[data-testid="nothing-found-message"]', {timeout: 1000}).should('be.visible')
+        cy.get('[data-testid="nothing-found-message"]', {timeout: 2000}).should('be.visible')
     })
 
     /*it('should redirect to the actual article after click on a title of an article', () => {
@@ -34,4 +34,5 @@ describe('MainContent', ()=> {
 
         cy.url().should('include', '/login')
     })
+
 })
