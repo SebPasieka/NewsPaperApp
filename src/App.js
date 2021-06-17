@@ -15,7 +15,7 @@ function App() {
         setIsAuth(state)
     }
     return (
-        <Router basename="/NewsPaperApp" >
+        <Router>
         <div>
             <Header />
             <Switch>
