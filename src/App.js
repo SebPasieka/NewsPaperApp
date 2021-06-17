@@ -3,7 +3,7 @@ import Header from "./components/header"
 import Footer from "./components/footer"
 import MainContent from "./components/mainContent"
 import Login from "./components/login"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { HashRouter as Router, Switch, Route } from "react-router-dom"
 import ProtectedRoute from "./components/protectedRoute"
 //import 'bulma/css/bulma.min.css';
 import "./App.css"
