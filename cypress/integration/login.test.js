@@ -1,6 +1,10 @@
 describe('login', () => {
-    it('should redirect to homepage given valid credentials', () => {
+
+    beforeEach(() => {
         cy.visit('/')
+    });
+
+    it('should redirect to homepage given valid credentials', () => {
         cy.successfulLogin()
 
         cy.url().should('include', '/')
@@ -8,7 +12,6 @@ describe('login', () => {
     })
 
     it('should display error message given invalid credentials', () => {
-        cy.visit('/')
         cy.get('[data-testid="username"]').type('invalid_username')
         cy.get('[data-testid="password"]').type('invalid_password')
         cy.get('[data-testid="submit"]').click()
@@ -18,7 +21,6 @@ describe('login', () => {
     })
 
     it('should log in automatically after a refresh if the login was successful', () => {
-        cy.visit('/')
         cy.successfulLogin()
 
         cy.reload()
